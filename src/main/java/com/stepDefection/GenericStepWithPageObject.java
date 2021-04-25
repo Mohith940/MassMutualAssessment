@@ -4,8 +4,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.logging.Logger;
 
-
-import cucumber.api.java.da.Givet;
+import cucumber.api.Scenario;
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
+import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import junit.framework.Assert;
 import com.pageObject.Values;
@@ -16,13 +18,24 @@ public class GenericStepWithPageObject {
 	
 	static Logger log = Logger.getLogger(GenericStepWithPageObject.class.getName());
 	Values values =null;
+	
+	@Before
+	public void setup() {
+		
+	}
+	
+	@After
+	public void after(Scenario sec) {
+		values.closeDriver();
+	}
 	 
-	@Givet("^lunch values application$")
-	public void lunch_values_application() throws FileNotFoundException, IOException {
+	@Given("^lunch values applicatio$")
+	public void lunch_values_applicatio() throws FileNotFoundException, IOException {
 	    //Lunching browser and values application 
 	     Driver.getDriver();
 	}
 	
+	@Then("^verify rigth (\\d+) of values are displyed on the screen$")
 	public void verify_rigth_of_values_are_displyed_on_the_screen(int count) throws Throwable {
 		values.verifyNoValues(count);
 	

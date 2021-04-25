@@ -1,7 +1,7 @@
 Feature: Value scenarios
 
 Background:
-  Given lunch values application 
+  Given lunch values applicatio
   
   Scenario Outline: 
   Then verify rigth <count> of values are displyed on the screen 
